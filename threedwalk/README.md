@@ -1,6 +1,6 @@
 # THREE D WALK
 
-A branching 3D tree like a folded protein. Class-based so that each branch is responsible for its own individual elements and can be moved in three dimensinal space.
+A branching 3D tree like a folded protein. Class-based so that each branch is responsible for its own individual elements and can be moved in three dimensional space.
 
 ## Notes
 
