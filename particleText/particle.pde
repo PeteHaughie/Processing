@@ -11,6 +11,7 @@ class Particle {
   float particleRadius;
   float distance;
   float speed;
+
   Particle() {
     x = 0;
     y = 0;
@@ -36,10 +37,11 @@ class Particle {
     distance = dist(destination.x, destination.y, currentBallPos, ballYPos);
     if (distance < ballSize) {
       if (destination.y >= ballYPos) {
-        velocity.y = -ballSize;
+        velocity.y = -(ballSize + random(0, 10));
       } else {
-        velocity.y = ballSize;
+        velocity.y = ballSize + random(0, 10);
       }
+      velocity.x = random(-5, 5); 
     }
   }
 
@@ -57,6 +59,11 @@ class Particle {
     }
     if (velocity.y < 0)  {
       velocity.y += 0.7;
+    }
+    if (velocity.x > origin.x) {
+      velocity.x = velocity.x - origin.x * 0.7;
+    } else {
+      velocity.x = 0;
     }
   }
 
