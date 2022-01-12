@@ -1,0 +1,6 @@
+**/output/**
+tools
+examples
+libraries
+*.mov
+*.mp4
