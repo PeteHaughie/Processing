@@ -1,63 +1,75 @@
-PImage sky;
-PShape dome;
+PImage galaxy,
+       sky,
+       floor;
 
-PGraphics scene, texture;
+PImage g;
 
-int DOMESIZE = 10000;
+PGraphics otherScene,
+          otherTexture;
 
-float mx, my;
+PGraphics scene,
+          texture;
+
+PShape dome,
+       otherDome;
+
+int BG = 0;
+int DOMESIZE = 100000;
+float cameraZ = -5000;
+float MAGNITUDE = 100000;
+float speed = 50;
+
+float mx,
+      my;
+
+float eyeX,
+      eyeY,
+      eyeZ;
+
+float centerX,
+      centerY,
+      centerZ;
+
+float upX,
+      upY,
+      upZ;
 
 void setup() {
-  size(900, 900, P3D);
+  size(900, 450, P3D);
+  textureWrap(REPEAT);
+  
+  // other dome
+  galaxy = loadImage("galaxy.jpg");
+  otherDome = createShape(SPHERE, DOMESIZE);
+  otherDome.textureMode(NORMAL);
+  otherDome.setTexture(galaxy);
+  otherDome.setStroke(false);
+
+  // dome
   sky = loadImage("sky.jpg");
   dome = createShape(SPHERE, DOMESIZE);
   dome.textureMode(NORMAL);
   dome.setTexture(sky);
   dome.setStroke(false);
+
+  // floor
+  floor = loadImage("floor2.jpg");
   
   scene = createGraphics(width, height, P3D);
   texture = createGraphics(width, height, P3D);
+
+  otherScene = createGraphics(width, height, P3D);
+  otherTexture = createGraphics(width, height, P3D);
   
   imageMode(CENTER);
   
 }
 
-void draw() { 
+void draw() {
+  update();
+  interactionKeyboard();
   drawScene();
+  drawOtherScene();
+  portal();
   image(scene, width / 2, height / 2);
-}
-
-void drawScene() {
-  scene.beginDraw();
-
-  scene.camera(
-    width / 2.0,
-    height / 2.0 + my,
-   (height / 2.0) / tan(PI*30.0 / 180.0),
-    width / 2.0,
-    height / 2.0,
-    0,
-    0,
-    1,
-    0
-  );
-  scene.perspective(PI/3.0, (float)width/height, 1, DOMESIZE);
-  
-  // skybox
-  scene.fill(#0000FF);
-  scene.noStroke();
-  scene.push();
-  scene.translate(scene.width / 2, scene.height / 2);
-  scene.rotateY(radians(frameCount * 0.01));
-  scene.texture(sky);
-  scene.shape(dome);
-  scene.pop();
-
-  
-  scene.endDraw();
-}
-
-void update() {
-  mx = mouseX;
-  my = mouseY;
 }
