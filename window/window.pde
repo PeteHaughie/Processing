@@ -1,9 +1,6 @@
 PImage galaxy,
        sky,
-       floor,
-       otherFloor;
-
-PImage g;
+       floor;
 
 PGraphics otherScene,
           otherTexture;
@@ -12,7 +9,12 @@ PGraphics scene,
           texture;
 
 PShape dome,
-       otherDome;
+       otherDome,
+       portal;
+
+PImage g;
+
+PGraphics portalImage;
 
 int BG = 0;
 int DOMESIZE = 100000;
@@ -55,7 +57,8 @@ void setup() {
   otherDome.textureMode(NORMAL);
   otherDome.setTexture(galaxy);
   otherDome.setStroke(false);
-  otherFloor = loadImage("floor2.jpg");
+  
+  portal = createShape();
 
   imageMode(CENTER);
   
@@ -65,7 +68,10 @@ void draw() {
   update();
   interactionKeyboard();
   drawScene();
-  image(scene, width / 2, height / 2, width, height);
   drawOtherScene();
+  image(scene, width / 2, height / 2, width, height);
   portal();
+  if (frameCount < 1000) {
+    saveFrame("./output/frame-####.tif");
+  }
 }

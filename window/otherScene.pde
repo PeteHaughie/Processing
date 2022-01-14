@@ -35,7 +35,7 @@ void drawOtherScene() {
   otherScene.translate(0, 20);
   otherScene.textureMode(NORMAL);
   otherScene.beginShape();
-  otherScene.texture(otherFloor);
+  otherScene.texture(floor);
   otherScene.vertex(-MAGNITUDE, -MAGNITUDE, 0, 0);
   otherScene.vertex(MAGNITUDE, -MAGNITUDE, 1, 0);
   otherScene.vertex(MAGNITUDE, MAGNITUDE, 1, 1);
