@@ -44,4 +44,6 @@ void drawScene() {
   scene.vertex(-MAGNITUDE, MAGNITUDE, 0, 1);
   scene.endShape();
   scene.pop();
+  
+  scene.endDraw();
 }

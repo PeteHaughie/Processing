@@ -40,7 +40,6 @@ void setup() {
   textureWrap(REPEAT);
 
   scene = createGraphics(width, height, P3D);
-  texture = createGraphics(width, height, P3D);
 
   sky = loadImage("sky.jpg");
   dome = createShape(SPHERE, DOMESIZE);
@@ -50,7 +49,6 @@ void setup() {
   floor = loadImage("floor2.jpg");
   
   otherScene = createGraphics(width, height, P3D);
-  otherTexture = createGraphics(width, height, P3D);
   
   galaxy = loadImage("galaxy.jpg");
   otherDome = createShape(SPHERE, DOMESIZE);
@@ -67,6 +65,7 @@ void draw() {
   update();
   interactionKeyboard();
   drawScene();
+  image(scene, width / 2, height / 2, width, height);
   drawOtherScene();
   portal();
 }

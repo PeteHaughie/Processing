@@ -22,7 +22,6 @@ void drawOtherScene() {
   otherScene.push();
   otherScene.translate(otherScene.width / 2, otherScene.height / 2);
   otherScene.rotateY(radians(frameCount * 0.01));
-  otherScene.texture(galaxy);
   otherScene.shape(otherDome);
   otherScene.pop();
 
