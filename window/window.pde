@@ -1,6 +1,7 @@
 PImage galaxy,
        sky,
-       floor;
+       floor,
+       otherFloor;
 
 PImage g;
 
@@ -37,30 +38,27 @@ float upX,
 void setup() {
   size(900, 450, P3D);
   textureWrap(REPEAT);
-  
-  // other dome
-  galaxy = loadImage("galaxy.jpg");
-  otherDome = createShape(SPHERE, DOMESIZE);
-  otherDome.textureMode(NORMAL);
-  otherDome.setTexture(galaxy);
-  otherDome.setStroke(false);
 
-  // dome
+  scene = createGraphics(width, height, P3D);
+  texture = createGraphics(width, height, P3D);
+
   sky = loadImage("sky.jpg");
   dome = createShape(SPHERE, DOMESIZE);
   dome.textureMode(NORMAL);
   dome.setTexture(sky);
   dome.setStroke(false);
-
-  // floor
   floor = loadImage("floor2.jpg");
   
-  scene = createGraphics(width, height, P3D);
-  texture = createGraphics(width, height, P3D);
-
   otherScene = createGraphics(width, height, P3D);
   otherTexture = createGraphics(width, height, P3D);
   
+  galaxy = loadImage("galaxy.jpg");
+  otherDome = createShape(SPHERE, DOMESIZE);
+  otherDome.textureMode(NORMAL);
+  otherDome.setTexture(galaxy);
+  otherDome.setStroke(false);
+  otherFloor = loadImage("floor2.jpg");
+
   imageMode(CENTER);
   
 }
@@ -71,5 +69,4 @@ void draw() {
   drawScene();
   drawOtherScene();
   portal();
-  image(scene, width / 2, height / 2);
 }

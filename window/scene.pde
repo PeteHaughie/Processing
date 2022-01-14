@@ -1,4 +1,5 @@
 void drawScene() {
+  
   scene.beginDraw();
 
   scene.camera(

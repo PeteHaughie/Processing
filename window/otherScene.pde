@@ -1,5 +1,5 @@
 void drawOtherScene() {
-  // other scene
+
   otherScene.beginDraw();
 
   otherScene.camera(
@@ -36,7 +36,7 @@ void drawOtherScene() {
   otherScene.translate(0, 20);
   otherScene.textureMode(NORMAL);
   otherScene.beginShape();
-  otherScene.texture(floor);
+  otherScene.texture(otherFloor);
   otherScene.vertex(-MAGNITUDE, -MAGNITUDE, 0, 0);
   otherScene.vertex(MAGNITUDE, -MAGNITUDE, 1, 0);
   otherScene.vertex(MAGNITUDE, MAGNITUDE, 1, 1);
