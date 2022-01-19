@@ -26,9 +26,10 @@ void scene() {
   scene.ellipse(5, 40, 20, 20);
   scene.pop();
   scene.endDraw();
+  image(scene, 100, 100);
 }
 
 void draw() {
-  image(scene, 100, 100);
+  scene();
   saveFrame("./output/frame-####.tif");
 }
