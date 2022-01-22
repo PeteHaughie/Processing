@@ -11,7 +11,8 @@ float cellW;
 float cellH;
 
 float xoff = 0,
-      yoff = 0;
+      yoff = 0,
+      phase = 0.05;
 
 void line() {
 
@@ -22,10 +23,8 @@ void line() {
   for (int i = 0; i < amt; i++) {
     for (int j = 0; j < amt; j++) {
             
-      float wxoff = map(sin(radians(xoff * 250)), 0.0, 0.25, -0.2, 0.2);
-      float wyoff = map(sin(radians(yoff * 250)), 0.0, 0.50, -0.2, 0.2);
-      float x = map(noise(wxoff + (i * 0.15) * 0.1, wyoff + (j * 0.1) * 0.15), 0, 1, -150, 150);
-      float y = map(noise(wxoff + (i * 0.25) * 0.2, wyoff + (j * 0.2) * 0.25), 0, 1, -150, 150);
+      float x = map(noise((i * 0.01) + phase, j * 0.01), 0, 1, -100, 100);
+      float y = map(noise((i * 0.015) + phase, j * 0.015), 0, 1, -100, 100);
       
       push();
       // position it
@@ -43,10 +42,11 @@ void line() {
       }
       pop();
 
+    }
   }
-  }
-  xoff += 0.003;
-  yoff += 0.005;
+  phase += 0.05;
+  xoff += phase;
+  yoff += phase;
   pop();
 }
 
