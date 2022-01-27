@@ -4,8 +4,6 @@ void ResizeImage(PImage img) {
   dim = new PVector();
   dim.x = img.width;
   dim.y = img.height;
-      
   float aspect = Math.min(width / dim.x, height / dim.y);
-  
-  img.resize(ceil((image.width / aspect) / 10), ceil((image.height / aspect) / 10));
+  img.resize(floor(dim.x * aspect) + floor(width - (dim.x * aspect)), floor(dim.y * aspect) + floor(width - (dim.x * aspect)));
 }
