@@ -23,7 +23,7 @@ void setup() {
   logo = loadShape("Logo_betamax_01.svg");
   float factor = 50; // pixels 
   float aspect = Math.min(factor / logo.width, factor / logo.height);
-  size.x = map(logo.width, 0, logo.width, 0, factor);
+  size.x = factor;
   size.y = floor(logo.height * aspect) + floor(factor - (logo.width * aspect));
   println(logo.width, logo.height, size);
   
