@@ -1,10 +1,9 @@
 PShape logo;
 
-PVector pos;
+PVector pos,
+        size;
 
-float x,
-  y,
-  speed;
+float speed;
 
 boolean up,
   left;
@@ -20,8 +19,14 @@ float r_int,
 void setup() {
   background(0);
   size(320, 240);
+  size = new PVector();
   logo = loadShape("Logo_betamax_01.svg");
-  logo.scale(.25);
+  float factor = 50; // pixels 
+  float aspect = Math.min(factor / logo.width, factor / logo.height);
+  size.x = map(logo.width, 0, logo.width, 0, factor);
+  size.y = floor(logo.height * aspect) + floor(factor - (logo.width * aspect));
+  println(logo.width, logo.height, size);
+  
   logo.disableStyle();
   r = 0;
   g = 0;
@@ -29,21 +34,21 @@ void setup() {
   speed = 1;
   up = false;
   left = false;
-  pos = new PVector(x, y);
-  pos.x = random(logo.width / 2, width - logo.width / 2);
-  pos.y = random(logo.height / 2, height - logo.height / 2);
+  pos = new PVector();
+  pos.x = random(size.x / 2, width - size.x / 2);
+  pos.y = random(size.y / 2, height - size.y / 2);
 }
 
 void update() {
 
-  if (pos.x + (logo.width / 4) > width) {
+  if (pos.x + size.x > width) {
     left = true;
   }
   if (pos.x < 0) {
     left = false;
   }
 
-  if (pos.y + (logo.height / 4) > height) {
+  if (pos.y + size.y > height) {
     up = true;
   }
   if (pos.y < 0) {
@@ -74,7 +79,7 @@ void draw() {
   background(0);
   update();
   fill(r, g, b);
-  shape(logo, pos.x, pos.y);
+  shape(logo, pos.x, pos.y, size.x, size.y);
   if (frameCount < 3000) {
     saveFrame("./output/frame-####.tif");
   } else {
