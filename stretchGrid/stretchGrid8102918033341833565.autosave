@@ -29,9 +29,9 @@ void draw() {
   update();
   
   image(grid1, 0, 0, x, y);
-  image(grid2, x, 0, 400 - x, y);
+  image(grid2, x, 0, width - x, 150 + (y - 150));
   image(grid3, 0, y, x, 400 - y);
-  image(grid4, x, y, 400 - x , 400 - y);
+  image(grid4, x, y, width - x , height - y);
   
   //noStroke();
   //fill(255, 0, 0);
