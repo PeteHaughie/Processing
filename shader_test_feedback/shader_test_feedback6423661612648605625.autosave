@@ -1,0 +1,27 @@
+PShader myShader;
+PGraphics buffer;
+
+void setup() {
+    size(640, 480, P2D);
+    buffer = createGraphics(width, height, P2D);
+
+    // Load the shader
+    myShader = loadShader("shader.glsl");
+    myShader.set("uResolution", (float) width, (float) height);
+}
+
+void draw() {
+    // Apply the shader to the buffer
+    buffer.beginDraw();
+    // buffer.shader(myShader);
+    // buffer.image(buffer, 0, 0); // Draw the buffer onto itself
+    buffer.endDraw();
+
+    // Draw the buffer to the screen
+    // image(buffer, 0, 0);
+    shader(myShader);
+    rect(0, 0, width, height);
+    // Update the uniform texture
+    myShader.set("buffer", buffer);
+    myShader.set("iGlobalTime", millis() / 1000);
+}
