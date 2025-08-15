@@ -12,9 +12,10 @@ vec4 myMix(vec4 x, vec4 y, float a) {
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord) {
-    vec2 uv = vec2(fragCoord.x, fragCoord.y) /iResolution.xy;
+    vec2 uv = vec2(fragCoord.x, fragCoord.y) / iResolution.xy;
     vec4 channel0 = texture2D(tex1, uv.xy);
     vec4 channel1 = texture2D(tex2, uv.xy);
+    // fragColor = vec4(1.0, 0.0, 0.0, 1.0); // prove the shader is working
     fragColor = myMix(channel0, channel1, opacity);
 }
 

@@ -4,7 +4,7 @@ PGraphics scene;
 float startTime;
 
 void setup() {
-  size(800, 600, P2D);
+  size(700, 800, P2D);
   noStroke();
   
   // Initialize start time
@@ -23,19 +23,23 @@ void setup() {
 void draw() {
   float currentTime = millis() / 1000.0 - startTime;
   
-  // Update shader uniforms
-  gaussianBlur.set("iTime", currentTime);
-  gaussianBlur.set("resolution", float(width), float(height));
-  
   // Render the scene to the graphics buffer
   scene.beginDraw();
   scene.background(0);
   scene.image(img, 0, 0, width, height);
   scene.endDraw();
+
+  // Update shader uniforms
+  gaussianBlur.set("iTime", currentTime);
+  gaussianBlur.set("resolution", float(width), float(height));
+  gaussianBlur.set("u_texture", scene);  
   
   // Apply the Gaussian blur shader
+
   shader(gaussianBlur);
   
   // Display the result
-  image(scene, 0, 0, width, height);
+  // image(scene, 0, 0, width, height);
+  fill(255);
+  rect(0, 0, width, height);
 }
